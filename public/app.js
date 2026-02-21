@@ -10,6 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.classList.add('active');
             document.getElementById(`tab-${btn.dataset.target}`).classList.add('active');
 
+            // Update mode indicator
+            const indicator = document.getElementById('mode-indicator');
+            if (indicator) {
+                indicator.textContent = btn.dataset.target === 'single'
+                    ? 'Modo 1 Link: Insira o link acima'
+                    : 'Modo Lote: Selecione sua planilha abaixo';
+            }
+
             // Hide results and errors when switching tabs
             hideElement(document.getElementById('table-result-container'));
             hideElement(document.getElementById('error-message'));

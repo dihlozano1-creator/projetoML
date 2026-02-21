@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Extrator Pro</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Mercado Extrações</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -14,86 +14,122 @@
         <div class="header-container">
             <div class="header-top">
                 <a href="/" class="logo-link">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#2d3277" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path
-                            d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z">
-                        </path>
-                    </svg>
-                    <span class="logo-text">Extrator Pro</span>
+                    <div class="logo-circle">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 16L12 21L20 16M4 8L12 13L20 8M12 3L4 8L12 13L20 8L12 3Z" stroke="#FFE600"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <span class="logo-text">mercado extrações</span>
                 </a>
-                <div class="header-actions">
-                    <span class="app-tag">Ferramenta de Extração</span>
-                </div>
+                <form id="scrape-form" class="search-box-header">
+                    <input type="url" id="url-input" placeholder="Cole o link do produto aqui..." required
+                        autocomplete="off">
+                    <button type="submit" id="submit-btn" aria-label="Buscar">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+            <div class="header-meta">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>Extraindo para: <strong>Loja de Produtos</strong></span>
             </div>
         </div>
     </header>
 
+    <div class="banner-purple">
+        <div>
+            <p class="banner-title">EXTRAÇÃO PLUS</p>
+            <p class="banner-desc" id="mode-indicator">Modo 1 Link: Insira o link acima</p>
+        </div>
+        <div class="upload-circle-small">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="17 8 12 3 7 8"></polyline>
+                <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+        </div>
+    </div>
+
     <div class="main-wrapper">
-        <main class="card">
-            <div class="tabs">
-                <button class="tab-btn active" data-target="single">Extrair 1 Produto</button>
-                <button class="tab-btn" data-target="batch">Extração em Lote (Excel/CSV)</button>
+        <div class="card">
+            <div class="tabs-container">
+                <div class="tabs">
+                    <button class="tab-btn active" data-target="single">Individual</button>
+                    <button class="tab-btn" data-target="batch">Em Lote / Arquivo</button>
+                </div>
             </div>
 
-            <!-- Single Tab -->
+            <!-- Single Content -->
             <div id="tab-single" class="tab-content active">
-                <div class="search-container">
-                    <label for="url-input" class="search-label">Cole o link do Mercado Livre abaixo:</label>
-                    <form id="scrape-form" class="search-box-body">
-                        <input type="url" id="url-input" placeholder="https://produto.mercadolivre.com.br/..." required
-                            autocomplete="off">
-                        <button type="submit" id="submit-btn" class="btn-primary">
-                            Extrair Descrição
-                        </button>
-                    </form>
-                    <p class="search-hint">O sistema irá capturar título, fotos e descrição completa instantaneamente.
-                    </p>
+                <div id="single-placeholder" style="text-align:center; padding: 2rem; color: var(--color-text-light);">
+                    <p>Cole o link do produto na barra amarela acima para começar.</p>
                 </div>
             </div>
 
-            <!-- Batch Tab -->
+            <!-- Batch Content -->
             <div id="tab-batch" class="tab-content">
-                <div class="dropzone" id="dropzone">
-                    <input type="file" id="file-input" accept=".csv, .xlsx, .xls" class="hidden">
-                    <div class="dropzone-content">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--ml-blue)"
-                            stroke-width="1.5">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                            <polyline points="17 8 12 3 7 8"></polyline>
-                            <line x1="12" y1="3" x2="12" y2="15"></line>
-                        </svg>
-                        <h3>Processar múltiplos links</h3>
-                        <p>Arraste sua planilha (.xlsx ou .csv) aqui</p>
-                        <button type="button" class="btn-secondary" id="browse-btn">Escolher arquivo</button>
+                <div class="upload-section">
+                    <h2 class="upload-title">Processar Arquivo</h2>
+                    <p class="upload-subtitle">Formatos suportados: .XLSX, .CSV</p>
+
+                    <div class="dropzone" id="dropzone">
+                        <input type="file" id="file-input" accept=".csv, .xlsx, .xls" class="hidden">
+                        <div class="upload-icon-circle">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue)"
+                                stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="17 8 12 3 7 8"></polyline>
+                                <line x1="12" y1="3" x2="12" y2="15"></line>
+                            </svg>
+                        </div>
+                        <h3>Toque para selecionar arquivos</h3>
+                        <p>ou arraste e solte aqui</p>
                     </div>
-                    <div id="file-info" class="file-info hidden">
+
+                    <div id="file-info" class="hidden"
+                        style="margin-bottom: 1rem; font-weight: 600; color: var(--color-success); border: 1px solid var(--color-border); padding: 1rem; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
                         <span id="file-name"></span>
-                        <button type="button" id="remove-file-btn">&times;</button>
+                        <button type="button" id="remove-file-btn"
+                            style="background:none; border:none; color:var(--color-error); font-size:1.5rem; cursor:pointer;">&times;</button>
                     </div>
+
+                    <button type="button" id="batch-submit-btn" class="btn-blue hidden">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="9" y1="3" x2="9" y2="21"></line>
+                        </svg>
+                        Iniciar Processamento Lote
+                    </button>
                 </div>
-                <button type="button" id="batch-submit-btn" class="btn-primary full-width hidden">
-                    Iniciar Processamento em Lote
-                </button>
             </div>
 
             <!-- Common Loader -->
             <div id="loader" class="loader-container hidden">
                 <div class="spinner"></div>
-                <p id="loader-text">Processando sua solicitação...</p>
-                <div id="progress-container" class="progress-container hidden">
-                    <div id="progress-bar" class="progress-bar"></div>
+                <p id="loader-text">Extraindo dados...</p>
+                <div id="progress-container" class="hidden"
+                    style="width: 100%; height: 8px; background: #eee; border-radius: 4px; margin-top: 1rem; overflow: hidden;">
+                    <div id="progress-bar"
+                        style="height: 100%; width: 0%; background: var(--color-blue); transition: width 0.3s;"></div>
                 </div>
             </div>
 
-            <!-- Unified Result View -->
-            <div id="table-result-container" class="hidden">
-                <div class="batch-header">
+            <!-- Unified Results Area -->
+            <div id="table-result-container" class="results-card hidden">
+                <div class="results-header">
                     <div>
-                        <h3 class="results-title">Dados Extraídos</h3>
-                        <p id="batch-stats" class="results-subtitle"></p>
+                        <h3 style="font-weight: 700;">Resultados Extraídos</h3>
+                        <p id="batch-stats" style="font-size: 0.85rem; color: var(--color-text-light);"></p>
                     </div>
-                    <button id="export-csv-btn" class="btn-success">Exportar para Excel (CSV)</button>
+                    <button id="export-csv-btn" class="btn-success">Baixar CSV</button>
                 </div>
                 <div class="table-container">
                     <table id="results-table">
@@ -110,10 +146,11 @@
                 </div>
             </div>
 
-            <div id="error-message" class="hidden error-box">
+            <div id="error-message" class="hidden"
+                style="margin: 1rem; padding: 1rem; background: #feebeb; color: var(--color-error); border-radius: 8px; font-weight: 600; text-align: center;">
                 <span id="error-text"></span>
             </div>
-        </main>
+        </div>
     </div>
 
     <script src="app.js"></script>
