@@ -10,6 +10,12 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.classList.add('active');
             document.getElementById(`tab-${btn.dataset.target}`).classList.add('active');
 
+            // Show prompt message if switching back to single tab
+            if (btn.dataset.target === 'single') {
+                const promptMsg = document.getElementById('single-prompt-message');
+                if (promptMsg) showElement(promptMsg);
+            }
+
             // Hide results and errors when switching tabs
             hideElement(document.getElementById('table-result-container'));
             hideElement(document.getElementById('error-message'));
@@ -40,6 +46,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const url = urlInput.value.trim();
         if (!url) return;
 
+        // Switch to single tab if not already there
+        const singleBtn = document.querySelector('.tab-btn[data-target="single"]');
+        if (singleBtn && !singleBtn.classList.contains('active')) {
+            singleBtn.click();
+        }
+
         hideElement(errorMessage);
         hideElement(tableResultContainer);
         hideElement(progContainer);
@@ -58,6 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
             renderTable(currentResults);
 
             hideElement(loader);
+            const promptMsg = document.getElementById('single-prompt-message');
+            if (promptMsg) hideElement(promptMsg);
             showElement(tableResultContainer);
 
         } catch (error) {
@@ -184,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // 2. Rebuild thead
         const theadRow = document.getElementById('results-thead-row');
         if (theadRow) {
-            theadRow.innerHTML = `<th>Status</th><th>Título</th><th>Descrição (Snippet)</th>`;
+            theadRow.innerHTML = `<th>Status</th><th>Produto</th><th>Descrição</th>`;
             dynamicCols.forEach(col => {
                 const th = document.createElement('th');
                 th.textContent = col;
