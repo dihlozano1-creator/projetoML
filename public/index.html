@@ -22,41 +22,16 @@
                     </div>
                     <span class="logo-text">mercado extrações</span>
                 </a>
-                <form id="scrape-form" class="search-box-header">
-                    <input type="url" id="url-input" placeholder="Cole o link do produto aqui..." required
-                        autocomplete="off">
-                    <button type="submit" id="submit-btn" aria-label="Buscar">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        </svg>
-                    </button>
-                </form>
-            </div>
-            <div class="header-meta">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                    <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-                <span>Extraindo para: <strong>Loja de Produtos</strong></span>
+                <div class="header-meta">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    <span>Extraindo para: <strong>Loja de Produtos</strong></span>
+                </div>
             </div>
         </div>
     </header>
-
-    <div class="banner-purple">
-        <div>
-            <p class="banner-title">EXTRAÇÃO PLUS</p>
-            <p class="banner-desc" id="mode-indicator">Modo 1 Link: Insira o link acima</p>
-        </div>
-        <div class="upload-circle-small">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                <polyline points="17 8 12 3 7 8"></polyline>
-                <line x1="12" y1="3" x2="12" y2="15"></line>
-            </svg>
-        </div>
-    </div>
 
     <div class="main-wrapper">
         <div class="card">
@@ -69,36 +44,53 @@
 
             <!-- Single Content -->
             <div id="tab-single" class="tab-content active">
-                <div id="single-placeholder" style="text-align:center; padding: 2rem; color: var(--color-text-light);">
-                    <p>Cole o link do produto na barra amarela acima para começar.</p>
+                <div class="search-container-vibrant">
+                    <h2 class="section-title">Extrair Produto Individual</h2>
+                    <p class="section-subtitle">Cole o link do Mercado Livre abaixo para processar imediatamente.</p>
+
+                    <form id="scrape-form" class="vibrant-search-box">
+                        <input type="url" id="url-input" placeholder="https://produto.mercadolivre.com.br/..." required
+                            autocomplete="off">
+                        <button type="submit" id="submit-btn" class="btn-blue">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            Extrair Agora
+                        </button>
+                    </form>
+                    <p class="search-hint">Iremos capturar título, descrição e todas as características técnicas.</p>
                 </div>
             </div>
 
             <!-- Batch Content -->
             <div id="tab-batch" class="tab-content">
                 <div class="upload-section">
-                    <h2 class="upload-title">Processar Arquivo</h2>
-                    <p class="upload-subtitle">Formatos suportados: .XLSX, .CSV</p>
+                    <h2 class="upload-title">Processar em Lote</h2>
+                    <p class="upload-subtitle">Selecione uma planilha (XLSX ou CSV) contendo os links.</p>
 
                     <div class="dropzone" id="dropzone">
                         <input type="file" id="file-input" accept=".csv, .xlsx, .xls" class="hidden">
-                        <div class="upload-icon-circle">
-                            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue)"
-                                stroke-width="2">
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                                <polyline points="17 8 12 3 7 8"></polyline>
-                                <line x1="12" y1="3" x2="12" y2="15"></line>
-                            </svg>
+                        <div class="dropzone-content">
+                            <div class="upload-icon-circle">
+                                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-blue)"
+                                    stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="17 8 12 3 7 8"></polyline>
+                                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                            </div>
+                            <h3>Toque para selecionar arquivos</h3>
+                            <p>ou arraste e solte sua planilha aqui</p>
+                            <button type="button" class="btn-outline-blue" id="browse-btn"
+                                style="margin-top: 1rem;">Procurar Arquivo</button>
                         </div>
-                        <h3>Toque para selecionar arquivos</h3>
-                        <p>ou arraste e solte aqui</p>
-                    </div>
 
-                    <div id="file-info" class="hidden"
-                        style="margin-bottom: 1rem; font-weight: 600; color: var(--color-success); border: 1px solid var(--color-border); padding: 1rem; border-radius: 8px; display: flex; justify-content: space-between; align-items: center;">
-                        <span id="file-name"></span>
-                        <button type="button" id="remove-file-btn"
-                            style="background:none; border:none; color:var(--color-error); font-size:1.5rem; cursor:pointer;">&times;</button>
+                        <div id="file-info" class="hidden file-selected-box">
+                            <span id="file-name"></span>
+                            <button type="button" id="remove-file-btn">&times;</button>
+                        </div>
                     </div>
 
                     <button type="button" id="batch-submit-btn" class="btn-blue hidden">
@@ -129,7 +121,7 @@
                         <h3 style="font-weight: 700;">Resultados Extraídos</h3>
                         <p id="batch-stats" style="font-size: 0.85rem; color: var(--color-text-light);"></p>
                     </div>
-                    <button id="export-csv-btn" class="btn-success">Baixar CSV</button>
+                    <button id="export-csv-btn" class="btn-success">Baixar CSV para Excel</button>
                 </div>
                 <div class="table-container">
                     <table id="results-table">
